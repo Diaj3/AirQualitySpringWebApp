@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Spring Framework Guru</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(locations)}">
+        <h2>Location List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Aqi</th>
+                <th>pm10</th>
+                <th>View</th>
+            </tr>
+            <tr th:each="location : ${locations}">
+                <td th:text="${location.id}"><a href="/location/${location.id}">Id</a></td>
+                <td th:text="${location.name}">name</td>
+                <td th:text="${location.aqi}">aqi</td>
+                <td th:text="${location.pm10}">pm10</td>
+                <td><a th:href="${ '/location/' + location.id}">View</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+<footer class="page-footer font-small dark">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="https://github.com/Diaj3"> João Dias</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+</body>
+</html>
