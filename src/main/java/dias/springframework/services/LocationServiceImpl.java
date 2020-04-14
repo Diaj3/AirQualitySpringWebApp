@@ -28,21 +28,4 @@ public class LocationServiceImpl implements LocationService {
         return locationRepository.save(location);
     }
 
-    //Extras ------------------------------------------------------------------
-
-    @Override
-    public Iterable<Location> listAllProducts() {
-        return locationRepository.findAll();
-    }
-
-    @Override
-    public Location getProductById(Integer id) {
-        return locationRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public Location saveProduct(Location location) {
-        return locationRepository.save(location);
-    }
-
 }

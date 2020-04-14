@@ -2,13 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
 
-    <title>Spring Framework Guru</title>
+    <title>Air Quality Project</title>
 
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
 <div class="container">
-    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/--> <!--
     <div th:if="${not #lists.isEmpty(locations)}">
         <h2>Location List</h2>
         <table class="table table-striped">
@@ -24,12 +24,13 @@
                 <td th:text="${location.name}">name</td>
                 <td th:text="${location.aqi}">aqi</td>
                 <td th:text="${location.pm10}">pm10</td>
-                <td><a th:href="${ '/location/' + location.id}">View</a></td>
+                <td><a th:href="${ '/location/name' + location.id}">View</a></td>
             </tr>
         </table>
 
-    </div>
+    </div>-->
 </div>
+
 <footer class="page-footer font-small dark">
 
     <!-- Copyright -->

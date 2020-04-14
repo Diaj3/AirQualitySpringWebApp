@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Air Quality Project</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Aqi</th>
+            <th scope="col">latitude</th>
+            <th scope="col">longitude</th>
+            <th scope="col">time</th>
+            <th scope="col">timezone</th>
+            <th scope="col">o3</th>
+            <th scope="col">no2</th>
+            <th scope="col">p</th>
+            <th scope="col">pm25</th>
+            <th scope="col">pm10</th>
+            <th scope="col">so2</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th th:text="${location.name}" scope="row">name</th>
+            <td th:text="${location.aqi}"></td>
+            <td th:text="${location.latitude}"></td>
+            <td th:text="${location.longitude}"></td>
+            <td th:text="${location.time}"></td>
+            <td th:text="${location.timezone}"></td>
+            <td th:text="${location.o3}"></td>
+            <td th:text="${location.no2}"></td>
+            <td th:text="${location.p}"></td>
+            <td th:text="${location.pm25}"></td>
+            <td th:text="${location.pm10}"></td>
+            <td th:text="${location.so2}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<footer class="page-footer font-small dark">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="https://github.com/Diaj3"> João Dias</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+</body>
+</html>

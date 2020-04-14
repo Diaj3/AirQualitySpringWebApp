@@ -8,7 +8,7 @@ public class Location {
 
     private @Id @GeneratedValue Integer id;
 
-    private Double aqi;
+    private Integer aqi;
     private String name;
     private Double latitude ;
     private Double longitude;
@@ -25,7 +25,7 @@ public class Location {
         super();
     }
 
-    public Location(Integer id, Double aqi, String name, Double latitude, Double longitude, Double o3, Double p, Double so2, Double pm10, Double pm25, String timezone, String time){
+    public Location(Integer id, Integer aqi, String name, Double latitude, Double longitude, Double o3, Double p, Double so2, Double pm10, Double pm25, String timezone, String time){
         this.id = id;
         this.aqi = aqi;
         this.name = name;
@@ -56,11 +56,11 @@ public class Location {
         this.name = name;
     }
 
-    public Double getAqi(){
+    public Integer getAqi(){
         return aqi;
     }
 
-    public void setAqi(Double aqi){
+    public void setAqi(Integer aqi){
         this.aqi = aqi;
     }
 
@@ -140,54 +140,5 @@ public class Location {
 
     public void setTime(String time) {
         this.time = time;
-    }
-
-    @Version
-    private Integer version;
-
-    private String productId;
-    private String description;
-    private String imageUrl;
-    private BigDecimal price;
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-
-
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
     }
 }
