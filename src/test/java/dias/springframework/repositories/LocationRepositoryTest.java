@@ -22,7 +22,7 @@ public class LocationRepositoryTest {
     }
 
     @Test
-    public void testSaveProduct(){
+    public void testSaveLocation(){
         //setup product
         Location location = new Location();
         location.setName("Test Location");

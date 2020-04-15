@@ -48,6 +48,27 @@
     </div>
 </div>
 
+<div class="container" style="margin-top: 20px; margin-bottom: 20px; background: #f2f2f2;border-radius: 20px; padding: 1.5%;">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Requests</th>
+            <th scope="col">Hits</th>
+            <th scope="col">Misses</th>
+            <th scope="col">Number of locations</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${requests.getCount()}"></td>
+            <td th:text="${requests.getHit()}"></td>
+            <td th:text="${requests.getMiss()}"></td>
+            <td th:text="${count}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 <footer class="page-footer font-small dark">
 
     <!-- Copyright -->

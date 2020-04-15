@@ -1,8 +1,11 @@
 package dias.springframework.bootstrap;
 
 import dias.springframework.domain.Location;
+import dias.springframework.domain.Requests;
 import dias.springframework.repositories.LocationRepository;
 
+import dias.springframework.repositories.RequestsRepository;
+import dias.springframework.services.RequestsService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import java.math.BigDecimal;
 public class LocationLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     private LocationRepository locationRepository;
+    private RequestsRepository requestsRepository;
 
     private Logger log = LogManager.getLogger(LocationLoader.class);
 
@@ -23,6 +27,12 @@ public class LocationLoader implements ApplicationListener<ContextRefreshedEvent
     public void setLocationRepository(LocationRepository locationRepository) {
         this.locationRepository = locationRepository;
     }
+
+    @Autowired
+    public void setRequestsRepository(RequestsRepository requestsRepository) {
+        this.requestsRepository = requestsRepository;
+    }
+
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -42,5 +52,12 @@ public class LocationLoader implements ApplicationListener<ContextRefreshedEvent
         teste.setTime("2019-10-5");
         teste.setTimezone("+01:00");
         //locationRepository.save(teste);
+
+        Requests requests = new Requests();
+        requests.setId(1);
+        System.out.println(requests);
+        requestsRepository.save(requests);
+        System.out.println(requestsRepository.findById(1));
+        System.out.println(requestsRepository.findById(1).toString());
     }
 }

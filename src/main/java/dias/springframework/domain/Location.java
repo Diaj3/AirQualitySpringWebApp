@@ -44,6 +44,9 @@ public class Location {
         this.id = id;
     }
 
+    public Location(int i, String lisboa) {
+    }
+
     public Integer getId(){
         return id;
     }

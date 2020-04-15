@@ -32,18 +32,9 @@ public class ServiceTest {
     }
 
     @Test
-    public void GetLocationDetails_ReturnLocationInfo() {
-        given( locationRepository.findById(1)).willReturn(java.util.Optional.of(new Location(2)));
-        Location location = locationService.getLocationById(2);
-        Assertions.assertThat( location.getId()).isEqualTo(2);
+    public void getLocationDetails_returnsLocationInfo() {
+        given( locationRepository.findById(8379)).willReturn(java.util.Optional.of(new Location(8379, "Lisboa")));
+        Location location = locationService.getLocationById(8379);
+        Assertions.assertThat( location.getName()).isEqualTo("Lisboa");
     }
-/*
-    @Test
-    public void getCarDetails_whenDoesntExist_returnsException() {
-        String nonExisting = "bad_car_name";
-        given( carRepository.findByName( nonExisting )).willThrow(CarNotFoundException.class);
-
-        Assertions.assertThatThrownBy( () -> { sutCarService.getCarDetails( nonExisting); }).isInstanceOf( CarNotFoundException.class );
-    }
- */
 }

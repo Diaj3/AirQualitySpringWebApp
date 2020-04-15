@@ -42,8 +42,15 @@ public class LocationController {
         this.locationService = locationService;
     }
 
+    @Autowired
+    public void setRequestsService(RequestsService requestsService) {
+        this.requestsService = requestsService;
+    }
+
     @RequestMapping(value = "/locations", method = RequestMethod.GET)
     public String list(Model model) {
+        model.addAttribute("requests", requestsService.getById(1));
+        model.addAttribute("count", locationService.count());
         model.addAttribute("locations", locationService.listAllLocations());
         return "locations";
     }
@@ -55,6 +62,9 @@ public class LocationController {
 
         //Inicializada a variável da nova localidade
         Location location = new Location();
+        Requests requests = requestsService.getById(1);
+        requests.setCount();
+        System.out.println(requests);
 
         String TOKEN = "/?token=3c955c3676946b481be9519656dd86960b566462";
         String url = "https://api.waqi.info/feed/";
@@ -97,8 +107,12 @@ public class LocationController {
                 if (locationService.getLocationById(id) != null){
                     location = locationService.getLocationById(id);
                     model.addAttribute("location", location);
+                    requests.setHit();
+                    requestsService.save(requests);
                     return "location_info";
                 }
+
+                requests.setMiss();
 
                 location.setId(id);
 
@@ -196,6 +210,8 @@ public class LocationController {
         }catch (Exception e){
             System.out.println("Error" + e);
         }
+
+        requestsService.save(requests);
         locationService.saveLocation(location);
         model.addAttribute("location", location);
         return "location_info";

@@ -8,9 +8,9 @@ import javax.persistence.Id;
 public class Requests {
 
     private @Id Integer id;
-    private Integer count;
-    private Integer hit;
-    private Integer miss;
+    private Integer count = 0;
+    private Integer hit = 0;
+    private Integer miss = 0;
 
     public Integer getId() {
         return id;
@@ -42,5 +42,15 @@ public class Requests {
 
     public Integer getCount() {
         return count;
+    }
+
+    @Override
+    public String toString() {
+        return "Requests{" +
+                "id=" + id +
+                ", count=" + count +
+                ", hit=" + hit +
+                ", miss=" + miss +
+                '}';
     }
 }

@@ -3,7 +3,9 @@ package dias.springframework.services;
 import dias.springframework.domain.Requests;
 import dias.springframework.repositories.RequestsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RequestsServiceImpl implements RequestsService {
 
     private RequestsRepository requestsRepository;
@@ -21,5 +23,10 @@ public class RequestsServiceImpl implements RequestsService {
     @Override
     public Requests save(Requests requests) {
         return requestsRepository.save(requests);
+    }
+
+    @Override
+    public Iterable<Requests> listAllRequests() {
+        return requestsRepository.findAll();
     }
 }
