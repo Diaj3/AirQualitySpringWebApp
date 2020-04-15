@@ -5,7 +5,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import dias.springframework.domain.Location;
+import dias.springframework.domain.Requests;
 import dias.springframework.services.LocationService;
+import dias.springframework.services.RequestsService;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +33,8 @@ public class LocationController {
 
     private LocationService locationService;
 
+    private RequestsService requestsService;
+
     private static HttpURLConnection connection;
 
     @Autowired
@@ -38,17 +42,16 @@ public class LocationController {
         this.locationService = locationService;
     }
 
-    // Get All Notes
-    @GetMapping("/region")
-    public List<Location> getAllNotes() {
-        return null; //LocationRepository.findAll();
+    @RequestMapping(value = "/locations", method = RequestMethod.GET)
+    public String list(Model model) {
+        model.addAttribute("locations", locationService.listAllLocations());
+        return "locations";
     }
 
     // Get Info from API + Get info from JSON -------------------------------------------------------------------------------------------
 
     @RequestMapping(value = "/city", method = RequestMethod.POST)
     public String list(Location search_location, Model model) throws URISyntaxException, IOException {
-        //model.addAttribute("locations", locationService.listAllLocations());
         System.out.println("|_-_-_TESTING_-_-_|");
 
         //Inicializada a variável da nova localidade
@@ -57,6 +60,7 @@ public class LocationController {
         String TOKEN = "/?token=3c955c3676946b481be9519656dd86960b566462";
         String url = "https://api.waqi.info/feed/";
         String name_teste = search_location.getName();
+        location.setName(name_teste);
 
         URLConnection connection = new URL(url + name_teste + TOKEN).openConnection();
         connection.setRequestProperty("Accept-Charset", "UTF-8");
@@ -78,10 +82,22 @@ public class LocationController {
                 System.out.println(jsonObject.getClass().getName());
                 System.out.println("Trying to separate elements");
 
+                String status = jsonObject.getString("status");
+                System.out.println("STATUS: _______________________ " + status);
+
                 JSONObject data = jsonObject.getJSONObject("data");
                 JSONObject iaqi = data.getJSONObject("iaqi");
                 JSONObject time = data.getJSONObject("time");
                 JSONObject city = data.getJSONObject("city");
+
+                Integer id = data.getInt("idx");
+                if (locationService.getLocationById(id) != null){
+                    location = locationService.getLocationById(id);
+                    model.addAttribute("location", location);
+                    return "location_info";
+                }
+
+                location.setId(id);
 
                 try{
                     JSONArray geo = city.getJSONArray("geo");
@@ -90,6 +106,8 @@ public class LocationController {
                     System.out.println("Latitude: " + geo.get(0) + "Longitude: " + geo.get(1));
                 }catch (JSONException e){
                     System.out.println("Error: " + e);
+                    location.setLatitude(0.0);
+                    location.setLongitude(0.0);
                 }
 
                 try{
@@ -175,7 +193,7 @@ public class LocationController {
         }catch (Exception e){
             System.out.println("Error" + e);
         }
-
+        locationService.saveLocation(location);
         model.addAttribute("location", location);
         return "location_info";
     }

@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container">
-    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/--> <!--
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
     <div th:if="${not #lists.isEmpty(locations)}">
         <h2>Location List</h2>
         <table class="table table-striped">
@@ -17,18 +17,16 @@
                 <th>Name</th>
                 <th>Aqi</th>
                 <th>pm10</th>
-                <th>View</th>
             </tr>
             <tr th:each="location : ${locations}">
-                <td th:text="${location.id}"><a href="/location/${location.id}">Id</a></td>
-                <td th:text="${location.name}">name</td>
-                <td th:text="${location.aqi}">aqi</td>
-                <td th:text="${location.pm10}">pm10</td>
-                <td><a th:href="${ '/location/name' + location.id}">View</a></td>
+                <td th:text="${location.getId()}">id</td>
+                <td th:text="${location.getName()}">name</td>
+                <td th:text="${location.getAqi()}">aqi</td>
+                <td th:text="${location.getPm10()}">pm10</td>
             </tr>
         </table>
 
-    </div>-->
+    </div>
 </div>
 
 <footer class="page-footer font-small dark">

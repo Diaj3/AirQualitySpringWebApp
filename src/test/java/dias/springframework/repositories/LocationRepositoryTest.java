@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.math.BigDecimal;
-
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,9 +25,20 @@ public class LocationRepositoryTest {
     public void testSaveProduct(){
         //setup product
         Location location = new Location();
-        location.setDescription("Spring Framework Guru Shirt");
-        location.setPrice(new BigDecimal("18.95"));
-        location.setProductId("1234");
+        location.setName("Test Location");
+        location.setAqi(30);
+        location.setLatitude(30.2);
+        location.setLongitude(20.2);
+        location.setPm10(20.2);
+        location.setPm25(20.6);
+        location.setP(12.3);
+        location.setSo2(16.3);
+        location.setO3(15.2);
+        location.setNo2(12.90);
+        location.setTimezone("+01:00");
+        location.setTime("2020-04-12 00:00");
+
+        //rep.findIdlocaion.getid
 
         //save product, verify has ID value after save
         assertNull(location.getId()); //null before save
@@ -43,29 +52,24 @@ public class LocationRepositoryTest {
 
         //should equal
         assertEquals(location.getId(), fetchedLocation.getId());
-        assertEquals(location.getDescription(), fetchedLocation.getDescription());
+        assertEquals(location.getName(), fetchedLocation.getName());
 
         //update description and save
-        fetchedLocation.setDescription("New Description");
+        fetchedLocation.setName("Location For Testing");
         locationRepository.save(fetchedLocation);
 
-        //get from DB, should be updated
+        //get from repository, should be updated
         Location fetchedUpdatedLocation = locationRepository.findById(fetchedLocation.getId()).orElse(null);
-        assertEquals(fetchedLocation.getDescription(), fetchedUpdatedLocation.getDescription());
+        assertEquals(fetchedLocation.getName(), fetchedUpdatedLocation.getName());
 
-        //verify count of products in DB
-        long productCount = locationRepository.count();
-        assertEquals(productCount, 1);
+        //verify count of locations in the repository
+        long numberOfLocations = locationRepository.count();
+        assertEquals(numberOfLocations, 1);
 
-        //get all products, list should only have one
-        Iterable<Location> products = locationRepository.findAll();
-
+        //get all locations, list should only have one
+        Iterable<Location> locations = locationRepository.findAll();
         int count = 0;
-
-        for(Location p : products){
-            count++;
-        }
-
+        for(Location p : locations){ count++; }
         assertEquals(count, 1);
     }
 }

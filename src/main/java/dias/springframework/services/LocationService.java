@@ -10,4 +10,6 @@ public interface LocationService {
     Location saveLocation(Location location);
 
     Iterable<Location> listAllLocations();
+
+    long count();
 }

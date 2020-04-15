@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 @Entity
 public class Location {
 
-    private @Id @GeneratedValue Integer id;
+    private @Id Integer id;
 
     private Integer aqi;
     private String name;
@@ -38,6 +38,10 @@ public class Location {
         this.pm25 = pm25;
         this.timezone = timezone;
         this.time = time;
+    }
+
+    public Location(int Id) {
+        this.id = id;
     }
 
     public Integer getId(){

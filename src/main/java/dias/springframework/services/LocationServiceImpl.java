@@ -19,6 +19,11 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
+    public long count() {
+        return locationRepository.count();
+    }
+
+    @Override
     public Location getLocationById(Integer id) {
         return locationRepository.findById(id).orElse(null);
     }
@@ -27,5 +32,4 @@ public class LocationServiceImpl implements LocationService {
     public Location saveLocation(Location location) {
         return locationRepository.save(location);
     }
-
 }
