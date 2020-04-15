@@ -85,6 +85,11 @@ public class LocationController {
                 String status = jsonObject.getString("status");
                 System.out.println("STATUS: _______________________ " + status);
 
+                if (!status.equals("ok")) {
+                    System.out.println("If statement is working");
+                    return "no_location_found";
+                }
+
                 JSONObject data = jsonObject.getJSONObject("data");
                 JSONObject iaqi = data.getJSONObject("iaqi");
                 JSONObject time = data.getJSONObject("time");
