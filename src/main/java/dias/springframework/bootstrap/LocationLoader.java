@@ -41,6 +41,6 @@ public class LocationLoader implements ApplicationListener<ContextRefreshedEvent
         teste.setSo2((double) 12);
         teste.setTime("2019-10-5");
         teste.setTimezone("+01:00");
-        locationRepository.save(teste);
+        //locationRepository.save(teste);
     }
 }

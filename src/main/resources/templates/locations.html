@@ -7,8 +7,8 @@
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 <div class="container">
-    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
     <div th:if="${not #lists.isEmpty(locations)}">
         <h2>Location List</h2>
         <table class="table table-striped">
@@ -16,13 +16,32 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Aqi</th>
-                <th>pm10</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Time</th>
+                <th>Timezone</th>
+                <th>P</th>
+                <th>Pm10</th>
+                <th>Pm25</th>
+                <th>o3</th>
+                <th>so2</th>
+                <th>no2</th>
             </tr>
             <tr th:each="location : ${locations}">
                 <td th:text="${location.getId()}">id</td>
                 <td th:text="${location.getName()}">name</td>
                 <td th:text="${location.getAqi()}">aqi</td>
-                <td th:text="${location.getPm10()}">pm10</td>
+                <td th:text="${location.getLatitude()}">Latitude</td>
+                <td th:text="${location.getLongitude()}">Longitude</td>
+                <td th:text="${location.getTime()}">Time</td>
+                <td th:text="${location.getTimezone()}">Timezone</td>
+                <td th:text="${location.getP()}">P</td>
+                <td th:text="${location.getPm10()}">Pm10</td>
+                <td th:text="${location.getPm25()}">Pm25</td>
+                <td th:text="${location.getO3()}">o3</td>
+                <td th:text="${location.getSo2()}">so2</td>
+                <td th:text="${location.getNo2()}">no2</td>
+
             </tr>
         </table>
 

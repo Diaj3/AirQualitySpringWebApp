@@ -52,7 +52,6 @@ public class LocationController {
 
     @RequestMapping(value = "/city", method = RequestMethod.POST)
     public String list(Location search_location, Model model) throws URISyntaxException, IOException {
-        System.out.println("|_-_-_TESTING_-_-_|");
 
         //Inicializada a variável da nova localidade
         Location location = new Location();
@@ -80,13 +79,12 @@ public class LocationController {
             try {
                 JSONObject jsonObject = new JSONObject(responseBody);
                 System.out.println(jsonObject.getClass().getName());
-                System.out.println("Trying to separate elements");
 
                 String status = jsonObject.getString("status");
-                System.out.println("STATUS: _______________________ " + status);
+                System.out.println("STATUS: " + status);
 
                 if (!status.equals("ok")) {
-                    System.out.println("If statement is working");
+
                     return "no_location_found";
                 }
 
